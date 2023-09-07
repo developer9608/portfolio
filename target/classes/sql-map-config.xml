@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC 
+  "-//mybatis.org//DTD Config 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+  <typeAliases>
+    <typeAlias alias="model" type="com.car.k1.model.ModelVO"/>  
+    <typeAlias alias="member" type="com.car.k1.member.MemberVO"/>  
+	<typeAlias alias="rez" type="com.car.k1.rez.RezVO"/>  
+  </typeAliases>
+
+
+  <mappers>
+    <mapper resource="mappings/model-mapping.xml"  />
+    <mapper resource="mappings/member-mapping.xml"  />
+    <mapper resource="mappings/rez-mapping.xml"  />
+  </mappers>
+</configuration> 

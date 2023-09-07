@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="ModelDAO">
+    <resultMap id="modelResult" type="model">
+        <id property="modelNo" column="modelNo" />
+        <result property="modelImgStr" column="modelImg"/>
+    </resultMap>
+	<select id="MODEL_SELECT_ALL" parameterType="model" resultMap="modelResult">
+	  <![CDATA[
+		SELECT rownum, Q.*
+		FROM
+			(SELECT rownum AS rnum, K.*
+			FROM (SELECT * 
+				 FROM vehicleModel
+			 	 WHERE 1 = 1
+		]]>
+				 <if test="searchTitle == 'modelName'">
+				 	AND modelName LIKE '%'||#{searchValue}||'%'
+				 </if>
+				 <if test="searchTitle == 'modelMake'">
+				 	AND modelMake LIKE '%'||#{searchValue}||'%'
+				 </if>
+		<![CDATA[
+			 	 ORDER BY modelName, modelMake) K
+			WHERE rownum <= ${endIdx}) Q
+		WHERE rnum >= ${startIdx}
+		ORDER BY modelNo
+		]]>
+	</select>
+	
+	<select id="MODEL_SELECT_ONE" parameterType="model" resultMap="modelResult">
+		SELECT * FROM vehicleModel WHERE modelNo=#{modelNo}
+	</select>
+	
+	<select id="TOTAL_COUNT" parameterType="model" resultType="int">
+		SELECT COUNT(*) FROM vehicleModel
+		WHERE 1 = 1
+				 <if test="searchTitle == 'modelName'">
+				 	AND modelName LIKE '%'||#{searchValue}||'%'
+				 </if>
+				 <if test="searchTitle == 'modelMake'">
+				 	AND modelMake LIKE '%'||#{searchValue}||'%'
+				 </if>
+
+	</select>
+	
+	<select id="MODEL_REZ_IMG" parameterType="model" resultMap="modelResult">
+	    SELECT modelImg  FROM vehicleModel where modelName=#{modelName}
+	</select>
+	
+	<insert id="MODEL_INSERT" parameterType="model">
+		insert into vehicleModel(modelNo, modelName, modelMake, modelYear, modelImg, modelDesc)
+		values (seqModel.nextval, #{modelName}, #{modelMake}, #{modelYear}, #{modelImgStr}, #{modelDesc})
+	</insert>
+
+	<update id="MODEL_UPDATE" parameterType="model">
+		update vehicleModel set modelName=#{modelName}, modelMake=#{modelMake}, modelYear=#{modelYear}, 
+		modelImg=#{modelImgStr}, modelDesc=#{modelDesc}
+		where modelNo=#{modelNo}
+	</update>
+	
+	<delete id="MODEL_DELETE" parameterType="model">
+		delete from vehicleModel where modelNo=#{modelNo}
+	</delete>
+	
+</mapper>

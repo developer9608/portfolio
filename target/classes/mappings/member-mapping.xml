@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="MemberDAO">		
+	<select id="MEMBER_SELECT_ALL" parameterType="member" resultType="member">
+		<![CDATA[
+		SELECT rownum, Q.*
+		FROM
+			(SELECT rownum AS rnum, K.*
+			FROM (SELECT * 
+				 FROM vehicleMember
+			 	 WHERE 1 = 1
+		]]>
+				 <if test="searchTitle == 'memberLoginId'">
+				 	AND memberLoginId LIKE '%'||#{searchValue}||'%'
+				 </if>
+				 <if test="searchTitle == 'memberName'">
+				 	AND memberName LIKE '%'||#{searchValue}||'%'
+				 </if>
+				 <if test="searchTitle == 'memberRole'">
+				 	AND memberRole LIKE '%'||#{searchValue}||'%'
+				 </if>
+		<![CDATA[
+			 	 ORDER BY memberNo) K
+			WHERE rownum <= ${endIdx}) Q
+		WHERE rnum >= ${startIdx}
+		]]>
+	</select>
+	
+	<select id="TOTAL_COUNT" parameterType="member" resultType="int">
+		SELECT COUNT(*) FROM vehicleMember
+		WHERE 1 = 1
+				 <if test="searchTitle == 'memberLoginId'">
+				 	AND memberLoginId LIKE '%'||#{searchValue}||'%'
+				 </if>
+				 <if test="searchTitle == 'memberName'">
+				 	AND memberName LIKE '%'||#{searchValue}||'%'
+				 </if>
+				 <if test="searchTitle == 'memberRole'">
+				 	AND memberRole LIKE '%'||#{searchValue}||'%'
+				 </if>
+	</select>
+	
+	<select id="MEMBER_SELECT_ONE" parameterType="member" resultType="member">
+		select memberNo, memberName, memberLoginId, memberPassword, memberEncPassword,   
+				memberPhone, memberEmail, memberRole, memberJoinDate, memberEnabled
+		
+		from vehicleMember where memberLoginId=#{memberLoginId}
+	</select>
+
+	<insert id="MEMBER_INSERT" parameterType="member">
+		insert into vehicleMember(memberNo, memberName, memberLoginId, 
+										memberPassword, memberEncPassword, memberPhone, memberEmail)
+		
+		values (SEQMEMBER.NEXTVAL,	 #{memberName}, #{memberLoginId}, 
+				#{memberPassword}, #{memberEncPassword}, #{memberPhone}, #{memberEmail})
+	</insert>
+
+	<update id="MEMBER_UPDATE" parameterType="member">
+		update vehicleMember set memberPassword=#{memberPassword}, memberEncPassword=#{memberEncPassword}, 
+		memberPhone=#{memberPhone}, memberEmail=#{memberEmail}	where memberNo=#{memberNo}
+	</update>
+	
+	<update id="MEMBER_AUTHORITY" parameterType="member">
+		UPDATE vehicleMember SET memberRole = #{memberRole} WHERE memberNo=#{memberNo}
+	</update>
+	
+	
+	<update id="MEMBER_DELETE" parameterType="member">
+		update vehicleMember set memberEnabled = #{memberEnabled} where memberNo=#{memberNo}
+	</update>
+
+</mapper>
+
+

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="RezDAO">	
+	<!-- 시승 예약 관리 -->
+	<select id="REZ_SELECTALL" parameterType="rez" resultType="rez">
+		<![CDATA[
+			SELECT rownum, Q.*
+			FROM
+				(SELECT rownum AS rnum, K.*
+				FROM (SELECT * 
+					 FROM vehicleRez
+				 	 WHERE 1 = 1
+		]]>
+					 <if test="searchTitle == 'rezNo'">
+					 	AND rezNo LIKE '%'||#{searchValue}||'%'
+					 </if>
+					 <if test="searchTitle == 'rezName'">
+					 	AND rezName LIKE '%'||#{searchValue}||'%'
+					 </if>
+		<![CDATA[
+				 	 ORDER BY rezNo) K
+				WHERE rownum <= ${endIdx}) Q
+			WHERE rnum >= ${startIdx}
+		]]>
+	</select>
+	
+	<select id="REZ_SELECTONE" resultType="rez" >
+		SELECT * FROM vehicleRez WHERE rezNo=#{rezNo}
+	</select>
+	
+	<select id="TOTAL_COUNT" parameterType="rez" resultType="int">
+		SELECT COUNT(*) FROM vehicleRez
+		WHERE 1 = 1
+		        <if test="searchTitle == 'rezNo'">
+		            AND rezNo LIKE '%'||#{searchValue}||'%'
+		        </if>
+		        <if test="searchTitle == 'rezName'">
+		            AND rezName LIKE '%'||#{searchValue}||'%'
+		        </if>
+	</select>
+	
+	<insert id="REZ_INSERT" parameterType="rez">
+		insert into vehicleRez(rezNo, rezLoginId, rezName, rezPhone, rezModelName, startDate, endDate)
+		values (SEQREZ.nextval, #{rezLoginId}, #{rezName}, #{rezPhone}, #{rezModelName}, #{startDate}, #{endDate})
+	</insert>
+
+	<delete id="REZ_DELETE" parameterType="rez">
+		delete from vehicleRez where rezNo=#{rezNo}
+	</delete>
+	
+	<!-- 시승 리뷰 관리 -->
+	<select id="REVIEW_SELECTONE" parameterType="rez" resultType="rez">
+		SELECT * FROM vehicleRez WHERE rezModelName = #{rezModelName} ORDER BY rezNo DESC
+	</select>
+	
+	<select id="TOTAL_COUNT_REVIEW" parameterType="rez" resultType="int">
+		SELECT COUNT(*) FROM vehicleReview WHERE reviewModelName = #{reviewModelName}
+	</select>
+	
+	<update id="REZ_REVIEW" parameterType="rez">
+		UPDATE vehicleRez SET writeReview = #{writeReview}
+		WHERE rezNo = #{reviewNo}
+	</update>
+	
+	<insert id="REVIEW_INSERT" parameterType="rez">
+		INSERT INTO vehicleReview(reviewNo, reviewLoginId, reviewName, reviewModelName, review)
+		VALUES(#{reviewNo}, #{reviewLoginId}, #{reviewName}, #{reviewModelName}, #{review})
+	</insert>
+	
+	<delete id="REVIEW_DELETE" parameterType="rez">
+		DELETE FROM vehicleReview WHERE reviewNo = #{reviewNo}
+	</delete>
+	
+
+</mapper>
