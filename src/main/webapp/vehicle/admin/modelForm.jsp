@@ -6,7 +6,7 @@
 	$(document).ready(function() {
 		  // Ajax 요청 시 캐시를 사용하지 않도록 설정
 		  $.ajaxSetup({cache:false});
-		$('#submitButton').click(function() {
+		  $('#submitButton').click(function() {
 			// 필수 입력 확인
 			if ($('#modelName').val() == '') {
 				alert("차량 모델명을 입력해 주세요.");
@@ -26,7 +26,7 @@
 				return false;
 			}
 			
-			 // FormData 객체 생성
+		    // FormData 객체 생성
 		    const formData = new FormData();
 		    formData.append("modelName", $('#modelName').val());
 		    formData.append("modelMake", $('#modelMake').val());
