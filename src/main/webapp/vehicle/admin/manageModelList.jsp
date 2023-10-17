@@ -11,11 +11,11 @@
 	        	<font color="red">*</font>이미지를 선택하면 수정화면으로 이동합니다.<br>
 	            <form action="<%=path %>/manageModelList.do">
 	            	<select>
-		            		<option value="modelName">모델명</option>
-		                    <option value="modelMake">제조사</option>
-		            </select>
-		            <input name="searchValue" type="text"  placeholder="검색어를 입력해주세요" size="60">
-		            <input type="submit" value="검색">
+		            	<option value="modelName">모델명</option>
+		                <option value="modelMake">제조사</option>
+		        </select>
+		        <input name="searchValue" type="text"  placeholder="검색어를 입력해주세요" size="60">
+		        <input type="submit" value="검색">
 	            </form>
 	   	</div>
 	    <div class="Listcontainer">
