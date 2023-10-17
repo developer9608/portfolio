@@ -15,29 +15,26 @@
     }
 </script>
 
-
-
-
 <section>
-		<div class="login">
-			<div class="Logincontainer"  align="center">
+	<div class="login">
+		<div class="Logincontainer"  align="center">
 	            <form name="f1" action="loginOK.do" method="POST" onSubmit="return logincheck()">
 	                <table id="formLogin">
-						<tr align="center">
-	                        <td>
+		  		<tr align="center">
+	                	        <td>
 				               	<c:choose>
-									<c:when test="${login_check == null || login_check == 'F'}">
-										<h3>로그인</h3>
-										<input type="text" name="memberLoginId" placeholder="아이디" value="admin111"><br><br>
-										<input type="password" name="memberPassword" placeholder="비밀번호" value="admin123"><br><br>
-										<input type="submit" value="로그인">
-									</c:when>
-									<c:otherwise>
-										<font color='green'><b>${login_name}</b></font> 님 환영합니다!
-									</c:otherwise>
-								</c:choose>
-							</td>			
-	                    </tr>
+							<c:when test="${login_check == null || login_check == 'F'}">
+								<h3>로그인</h3>
+								<input type="text" name="memberLoginId" placeholder="아이디" value="admin111"><br><br>
+								<input type="password" name="memberPassword" placeholder="비밀번호" value="admin123"><br><br>
+								<input type="submit" value="로그인">
+							</c:when>
+							<c:otherwise>
+								<font color='green'><b>${login_name}</b></font> 님 환영합니다!
+							</c:otherwise>
+						</c:choose>
+					</td>			
+	                    	</tr>
 	                </table>
 	            </form>
         	</div>
