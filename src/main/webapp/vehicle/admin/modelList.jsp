@@ -9,36 +9,35 @@
 	       <font color="red">*</font>이미지를 선택하면 상세화면으로 이동합니다. <br>
 	            <form action="<%=path %>/modelList.do">
 	            	<select>
-		                    <option value="modelName">모델명</option>
-		                    <option value="modelMake">제조사</option>
-		                </select>
-		                <input name="searchValue" type="text"  placeholder="검색어를 입력해주세요" size="60">
-		                <input type="submit" value="검색">
+		        	<option value="modelName">모델명</option>
+		                <option value="modelMake">제조사</option>
+		        </select>
+		        <input name="searchValue" type="text"  placeholder="검색어를 입력해주세요" size="60">
+		        <input type="submit" value="검색">
 	            </form>
 	    </div>
 	    <div class="Listcontainer">
 	        <c:if test="${not empty li}">
 	            <table border="1">
-	                <c:forEach items="${li}" var="m">
-					        <tr>
-							    <td>
-							        <c:forEach items="${m.imageNames}" var="imageName">
-							            <a href="<%=path %>/getModel.do?modelNo=${m.modelNo}">
-							                <img src="<%=path %>/vehicle/admin/files/${imageName}" alt="이미지" class="modelImg">
-							            </a>
-							        </c:forEach>
-							    </td>
-							</tr>
+	                <c:forEach items="${li}" var="m">	
+				<tr>
+				   <td>
+				      <c:forEach items="${m.imageNames}" var="imageName">
+				         <a href="<%=path %>/getModel.do?modelNo=${m.modelNo}">
+				            <img src="<%=path %>/vehicle/admin/files/${imageName}" alt="이미지" class="modelImg"></a>
+				      </c:forEach>
+				   </td>
+				</tr>
 	                </c:forEach>
 	            </table>
 	        </c:if>
 	        <c:if test="${empty li}">
 	        	<table border="1">
-	                <tr>
-	                	<td>
+	                   <tr>
+	                      <td>
 	                    	검색된 내용이 없습니다.
-	                    </td>
-	            	</tr>
+	                      </td>
+	            	   </tr>
 	        	</table>
 	        </c:if>
 	       </div>
@@ -46,8 +45,8 @@
 	       <div id="page1" align=center>
 				<c:url value="modelList.do" var="url">
 					<c:param name="startIdx" value="1" />
-							<c:param name="searchTitle" value="${searchTitle}" />
-							<c:param name="searchValue" value="${searchValue}" />
+					<c:param name="searchTitle" value="${searchTitle}" />
+					<c:param name="searchValue" value="${searchValue}" />
 				</c:url>
 			<a href="${url}">처음</a>&emsp;
 			<c:choose>
