@@ -105,8 +105,8 @@
 	       <div id="page1" align=center>
 				<c:url value="getRezList.do" var="url">
 					<c:param name="startIdx" value="1" />
-							<c:param name="searchTitle" value="${searchTitle}" />
-							<c:param name="searchValue" value="${searchValue}" />
+					<c:param name="searchTitle" value="${searchTitle}" />
+					<c:param name="searchValue" value="${searchValue}" />
 				</c:url>
 			<a href="${url}">처음</a>&emsp;
 			<c:choose>
