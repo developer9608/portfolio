@@ -8,7 +8,7 @@
 <script>
 	var path = '${pageContext.request.contextPath}';
 	jQuery.ajaxSetup({cache:false});
-	function updateButton(memberNo, startIdx, searchT, searchV) {
+	function updateButton(memberNo, startIdx) {
 		if (confirm('변경하시겠습니까?')) {
 			$.ajax({
 				type: 'POST',
@@ -26,7 +26,7 @@
 		} // 변경 확인
 	}
 	
-	function deleteButton(memberNo, startIdx, searchT, searchV) {
+	function deleteButton(memberNo, startIdx) {
 		if (confirm('삭제하시겠습니까?')) {
 			$.ajax({
 				type: 'POST',
@@ -70,37 +70,37 @@
 					<c:forEach items="${li}" var="vo">
 						<c:if test="${vo.memberEnabled eq 'Y'}">
 							<tr>
-								<td>${vo.memberNo}</td>
-								<td>${vo.memberLoginId}</td>
-								<td>${vo.memberName}</td>
-								<td>&nbsp; ${vo.memberRole}</td>
-								<td id="role" class="roleColumn">&nbsp;
+							   <td>${vo.memberNo}</td>
+							   <td>${vo.memberLoginId}</td>
+							   <td>${vo.memberName}</td>
+							   <td>&nbsp; ${vo.memberRole}</td>
+							   <td id="role" class="roleColumn">&nbsp;
 						                <c:choose>
-								                    <c:when test="${login_role == 'ROLE_MEMBER' || login_name == vo.memberName}">
-								                        <input type="checkbox"  class="memberRoleCheckbox" name="memberRole" value="ROLE_MEMBER" ${vo.memberRole eq 'ROLE_MEMBER' ? 'checked' : ''}>일반회원&nbsp;&nbsp;
-								                        <input type="checkbox"  class="memberRoleCheckbox" name="memberRole" value="ROLE_ADMIN" ${vo.memberRole eq 'ROLE_ADMIN' ? 'checked' : ''}>시스템관리자&nbsp;&nbsp;
-								                    </c:when>
-								                    <c:when test="${login_role == 'ROLE_ADMIN'}">
-								                        <input type="checkbox"  class="memberRoleCheckbox"  name="memberRole" value="ROLE_MEMBER" ${vo.memberRole eq 'ROLE_MEMBER' ? 'checked' : ''}>일반회원&nbsp;&nbsp;
-								                        <input type="checkbox"  class="memberRoleCheckbox" name="memberRole" value="ROLE_ADMIN" ${vo.memberRole eq 'ROLE_ADMIN' ? 'checked' : ''}>시스템관리자&nbsp;&nbsp;
-								                    </c:when>
+							           <c:when test="${login_role == 'ROLE_MEMBER' || login_name == vo.memberName}">
+							               <input type="checkbox"  class="memberRoleCheckbox" name="memberRole" value="ROLE_MEMBER" ${vo.memberRole eq 'ROLE_MEMBER' ? 'checked' : ''}>일반회원&nbsp;&nbsp;
+							               <input type="checkbox"  class="memberRoleCheckbox" name="memberRole" value="ROLE_ADMIN" ${vo.memberRole eq 'ROLE_ADMIN' ? 'checked' : ''}>시스템관리자&nbsp;&nbsp;
+							           </c:when>
+							           <c:when test="${login_role == 'ROLE_ADMIN'}">
+							               <input type="checkbox"  class="memberRoleCheckbox"  name="memberRole" value="ROLE_MEMBER" ${vo.memberRole eq 'ROLE_MEMBER' ? 'checked' : ''}>일반회원&nbsp;&nbsp;
+							               <input type="checkbox"  class="memberRoleCheckbox" name="memberRole" value="ROLE_ADMIN" ${vo.memberRole eq 'ROLE_ADMIN' ? 'checked' : ''}>시스템관리자&nbsp;&nbsp;
+							           </c:when>
 						                </c:choose>
-								</td>
+							   </td>
 								<td align="center" style="width: 150px;">
-									<input type="button" value="변경" onClick="updateButton('${vo.memberNo}', '${startIdx}', '${searchTitle}', '${searchValue}')">&nbsp; / &nbsp;
-									<input type="button" value="삭제" onClick="deleteButton('${vo.memberNo}', '${startIdx}', '${searchTitle}', '${searchValue}')">
+									<input type="button" value="변경" onClick="updateButton('${vo.memberNo}', '${startIdx}')">&nbsp; / &nbsp;
+									<input type="button" value="삭제" onClick="deleteButton('${vo.memberNo}', '${startIdx}')">
 								</td>
 							</tr>
-					</c:if>	
-				</c:forEach>
+						</c:if>	
+					</c:forEach>
 			</table>
 		</c:if>
 		<c:if test="${empty li}">
 			<table border="1" style="margin: 0 auto; border-collapse: collapse;">
 				<tr>
-					<td style="text-align: center; padding: 10px;">
-						검색된 내용이 없습니다.
-					</td>
+				   <td style="text-align: center; padding: 10px;">
+					검색된 내용이 없습니다.
+				   </td>
 				</tr>
 			</table>
 		</c:if>
