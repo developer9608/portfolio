@@ -49,7 +49,7 @@
     		<form action="<%=path%>/updateModel.do" enctype="multipart/form-data" method="POST">
 	            <table border="1" class="editTable">
 	            	<tr>
-	            		<th align="center">이미지</th>
+	            	    <th align="center">이미지</th>
 	                    <td align="center">
 	                        <c:forEach items="${m.imageNames}" var="imageName">
 	                                <img src="<%=path %>/vehicle/admin/files/${imageName}" alt="이미지" class="modelImg">
@@ -73,7 +73,8 @@
 	                    <th align="center">상세설명</th>
 	                    <td><textarea name="modelDesc" style="width=100%;, height=100px;">${m.modelDesc}</textarea></td>
 	                </tr>
-	            </table><br>
+	            </table>
+		<br>
 	            <div>
 	                <input type="button" value="목록보기" onClick="listButton()">&emsp;
 					<input type="submit" value="정보수정" id="submitButton"> &emsp;
