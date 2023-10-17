@@ -22,33 +22,32 @@
 	        <c:if test="${not empty li}">
 	            <table border="1">
 	                <c:forEach items="${li}" var="m">
-					        <tr>
-							    <td>
-							        <c:forEach items="${m.imageNames}" var="imageName">
-							            <a href="<%=path %>/editModel.do?modelNo=${m.modelNo}">
-							                <img src="<%=path %>/vehicle/admin/files/${imageName}" alt="이미지" class="modelImg">
-							            </a>
-							        </c:forEach>
-							    </td>
-							</tr>
+				   <tr>
+				     <td>
+				       <c:forEach items="${m.imageNames}" var="imageName">
+				          <a href="<%=path %>/editModel.do?modelNo=${m.modelNo}">
+				            <img src="<%=path %>/vehicle/admin/files/${imageName}" alt="이미지" class="modelImg"></a>
+				       </c:forEach>
+				     </td>
+				   </tr>
 	                </c:forEach>
 	            </table>
 	        </c:if>
 	        <c:if test="${empty li}">
 	        	<table border="1" style="margin: 0 auto; border-collapse: collapse;">
-	                <tr>
-	                	<td style="text-align: center; padding: 10px;">
-	                    	검색된 내용이 없습니다.
-	                    </td>
-	            	</tr>
+		                <tr>
+		                    <td style="text-align: center; padding: 10px;">
+		                    	검색된 내용이 없습니다.
+		                    </td>
+		            	</tr>
 	        	</table>
 	        </c:if>
     	</div>
 		<div id="page1" align=center>
-        	<c:url value="manageModelList.do" var="url">
+        		<c:url value="manageModelList.do" var="url">
 				<c:param name="startIdx" value="1" />
-						<c:param name="searchTitle" value="${searchTitle}" />
-						<c:param name="searchValue" value="${searchValue}" />
+				<c:param name="searchTitle" value="${searchTitle}" />
+				<c:param name="searchValue" value="${searchValue}" />
 			</c:url>
 			<a href="${url}">처음</a>&emsp;
 			<c:choose>
