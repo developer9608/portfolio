@@ -1,44 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/include/top.jsp" %>
 
-<section>
-	<br>
-	<div align="center">
-		<h3>회원정보수정</h3>
-		<font color="red">*</font>표시만 수정이 가능합니다.</div><br>
-		<div class="getmembercontainer">
-		<input type="hidden" name="memberNo" id="memberNo" value="${vo.memberNo}">
-		<table id="joinFormTable">
-			<tr>
-				<th align="center">아이디</th>
-				<td><input type="text" name="memberLoginId" id="memberLoginId" value="${vo.memberLoginId}" readonly></td>
-			</tr>
-			<tr>
-				<th align="center">비밀번호<font color="red">*</font></th>
-				<td><input type="text" name="memberPassword" id="memberPassword" value="${vo.memberPassword}" size="30" placeholder="최소 6자리이상 입력해주세요."></td>
-			</tr>
-			<tr>
-				<th align="center">이름</th>
-				<td><input type="text" name="memberName" id="memberName" value="${vo.memberName}" size="13"  readonly></td>
-			</tr>
-			<tr>
-				<th align="center">전화번호<font color="red">*</font></th>
-				<td><input type="text" name="memberPhone" id="memberPhone" value="${vo.memberPhone}" size="20" placeholder="010-0000-0000"></td>
-			</tr>
-			<tr>
-				<th align="center">이메일<font color="red">*</font></th>
-				<td><input type="email" name="memberEmail" id="memberEmail" value="${vo.memberEmail}" size="30" placeholder="ex)abc123@vehicle.com"></td>
-			</tr>
-		</table>		
-	</div>
-	<br>
-	<div align=center>
-					<input type="button" value="수정하기" id="updateButton">&nbsp;
-					 <input type="button" value="탈퇴하기" id="deleteButton">
-	</div>
-	<br>
-</section>
-<%@ include file="/include/bottom.jsp" %>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function() {
@@ -122,3 +84,43 @@ $(document).ready(function() {
     });
 });
 </script>
+
+<section>
+	<br>
+	<div align="center">
+		<h3>회원정보수정</h3>
+		<font color="red">*</font>표시만 수정이 가능합니다.</div><br>
+		<div class="getmembercontainer">
+		<input type="hidden" name="memberNo" id="memberNo" value="${vo.memberNo}">
+		<table id="joinFormTable">
+			<tr>
+				<th align="center">아이디</th>
+				<td><input type="text" name="memberLoginId" id="memberLoginId" value="${vo.memberLoginId}" readonly></td>
+			</tr>
+			<tr>
+				<th align="center">비밀번호<font color="red">*</font></th>
+				<td><input type="text" name="memberPassword" id="memberPassword" value="${vo.memberPassword}" size="30" placeholder="최소 6자리이상 입력해주세요."></td>
+			</tr>
+			<tr>
+				<th align="center">이름</th>
+				<td><input type="text" name="memberName" id="memberName" value="${vo.memberName}" size="13"  readonly></td>
+			</tr>
+			<tr>
+				<th align="center">전화번호<font color="red">*</font></th>
+				<td><input type="text" name="memberPhone" id="memberPhone" value="${vo.memberPhone}" size="20" placeholder="010-0000-0000"></td>
+			</tr>
+			<tr>
+				<th align="center">이메일<font color="red">*</font></th>
+				<td><input type="email" name="memberEmail" id="memberEmail" value="${vo.memberEmail}" size="30" placeholder="ex)abc123@vehicle.com"></td>
+			</tr>
+		</table>		
+	</div>
+	<br>
+	<div align=center>
+					<input type="button" value="수정하기" id="updateButton">&nbsp;
+					 <input type="button" value="탈퇴하기" id="deleteButton">
+	</div>
+	<br>
+</section>
+<%@ include file="/include/bottom.jsp" %>
+
