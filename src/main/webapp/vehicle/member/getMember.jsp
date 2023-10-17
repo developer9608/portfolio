@@ -117,10 +117,9 @@ $(document).ready(function() {
 	</div>
 	<br>
 	<div align=center>
-					<input type="button" value="수정하기" id="updateButton">&nbsp;
-					 <input type="button" value="탈퇴하기" id="deleteButton">
+		<input type="button" value="수정하기" id="updateButton">&nbsp;
+		<input type="button" value="탈퇴하기" id="deleteButton">
 	</div>
 	<br>
 </section>
 <%@ include file="/include/bottom.jsp" %>
-
