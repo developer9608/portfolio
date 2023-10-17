@@ -26,39 +26,40 @@
 
 <section>
 <div align="center">
-  			<h1>차량 시승 예약</h1></div>
-  			<div class="getmodelcontainer">
-				<form id="f1" action="rezFormOK.do" method="post" onSubmit="return checkVal();">
-						<input type="hidden" name="rezLoginId" value="${login_id}">
-						<input type="hidden" name="rezName" value="${login_name}">
-				    <table id="editTable">
+  		<h1>차량 시승 예약</h1></div>
+  		<div class="getmodelcontainer">
+			<form id="f1" action="rezFormOK.do" method="post" onSubmit="return checkVal();">
+				<input type="hidden" name="rezLoginId" value="${login_id}">
+				<input type="hidden" name="rezName" value="${login_name}">
+				<table id="editTable">
 				    <tr>
 				    	<td colspan='2' align="center">
 						<c:forEach items="${m.imageNames}" var="imageName">
-			     			<img src="<%=path %>/vehicle/admin/files/${imageName}" alt="이미지" class="modelImg">
-			            </c:forEach>
-			            </td></tr>
-				    	<tr>
-				            <th align="center">예약 차량 모델</th>
-				            <td><input type="text" id="rezModelName" name="rezModelName" value="${mvo.modelName}" readonly></td>
-				        </tr>
-				        <tr>
-				            <th align="center">예약자 전화번호</th>
-				            <td><input type="tel" id="rezPhone" name="rezPhone" size="15" placeholder="010-0000-0000"></td>
-				        </tr>
-						<tr>
-							<th align="center">예약 희망 날짜</th>
-							<td>
-								<input type="text" id="startDate" name="startDate" size="10" placeholder="yyyy-MM-dd"> ~ 
-								<input type="text" id="endDate" name="endDate" size="10" placeholder="yyyy-MM-dd">
-							</td>
-						</tr>
-				    </table>
-			    	<br>
+			     				<img src="<%=path %>/vehicle/admin/files/${imageName}" alt="이미지" class="modelImg">
+			            		</c:forEach>
+			            	</td>
+				    </tr>
+				    <tr>
+				        <th align="center">예약 차량 모델</th>
+				        <td><input type="text" id="rezModelName" name="rezModelName" value="${mvo.modelName}" readonly></td>
+				    </tr>
+				    <tr>
+				        <th align="center">예약자 전화번호</th>
+				        <td><input type="tel" id="rezPhone" name="rezPhone" size="15" placeholder="010-0000-0000"></td>
+				    </tr>
+				    <tr>
+					<th align="center">예약 희망 날짜</th>
+					<td>
+						<input type="text" id="startDate" name="startDate" size="10" placeholder="yyyy-MM-dd"> ~ 
+						<input type="text" id="endDate" name="endDate" size="10" placeholder="yyyy-MM-dd">
+					</td>
+				    </tr>
+				</table>
+			    <br>
 			    	<div align="center">
 			    		<input type="submit" value="시승 예약하기">
 			    	</div>
-				</form>
+			</form>
 		</div>
 </section>
 
